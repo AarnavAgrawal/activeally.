@@ -1,0 +1,248 @@
+@import "/template.css";
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+.container {
+    display: flex;
+    height: 100%;
+}
+.navbar {
+    flex: 0 0 16%; 
+    background-color: var(--peach);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 25px; 
+}
+.rest-section {
+    flex: 1;
+    background-color: #FDF0D5;
+    position: relative; 
+}
+.logo {
+    color: var(--royalblue);
+    font-size: 30px;
+    cursor: pointer;
+    margin-bottom: 20px; 
+    font-weight: bold;
+}
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+}
+.button {
+    color: white;
+    background-color: transparent;
+    border: 2px solid transparent;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: left; 
+    transition: all 0.3s ease;
+    position: relative;
+    border-radius: 20px; 
+    display: flex;
+    align-items: center;
+}
+.button:hover {
+    background-color: white;
+    color: var(--royalblue);
+}
+.button .icon {
+    margin-right: 10px; 
+}
+.active-button::after {
+    content: '';
+    position: absolute;
+    width: calc(100% + 20px); 
+    height: calc(100% + 20px); 
+    border: 2px solid white;
+    border-radius: 20px; 
+    top: -10px; 
+    left: -10px;
+    z-index: -1;
+}
+
+/* Styles for username dropdown */
+.dropdown {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--royalblue);
+    width: 125px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {
+    color: var(--tan);
+    background-color: var(--peach);
+    transition: all 0.3s ease;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown .dropbtn {
+    font-size: 20px;  
+    border: none;
+    cursor: pointer;
+    background-color: inherit;
+    color: var(--royalblue);
+}
+
+.rest-section {
+    overflow: auto; 
+}
+
+
+.goal-guru-text {
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 30px; 
+    margin-top: 30px; 
+    color: var(--royalblue);
+}
+
+.button-new-section {
+    color: white;
+    background-color: var(--royalblue);
+    border: 2px solid var(--royalblue);
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: left; 
+    transition: all 0.3s ease;
+    position: absolute;
+    border-radius: 20px; 
+    display: flex;
+    align-items: center;
+    margin: 25px 30px;
+    font-size: 18px;
+}
+.button-new-section:hover {
+    background-color: var(--seagreen);
+    color: white;
+    border: 2px solid var(--seagreen);
+}
+.button-new-section .icon {
+    margin-right: 10px; 
+}
+.active-button-new-section::after {
+    content: '';
+    position: absolute;
+    width: calc(100% + 20px); 
+    height: calc(100% + 20px); 
+    border: 2px solid white;
+    border-radius: 20px; 
+    top: -10px; 
+    left: -10px;
+    z-index: -1;
+}
+
+
+/* CSS for the checkbox list */
+.checkbox-list {
+    margin-top: 75px;
+    margin-left: 30px;
+}
+
+.checkbox-list input[type="checkbox"] {
+    margin-right: 5px;
+    font-size: 18px;
+    margin-top: 30px;
+    width: 15px;
+    height: 15px;
+}
+
+.checkbox-list input[type="text"] {
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 18px;
+    vertical-align: middle;
+    width: 60%;
+
+}
+.checkbox-list input[type="text"]:focus {
+    outline: none;
+    border-color: var(--royalblue);
+    box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);
+    font-size: 18px;
+}
+.checkbox-list textarea,
+.checkbox-list span {
+    margin-right: 10px;
+    border: none;
+    background: none;
+    resize: none;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    outline: none;
+}
+.checkbox-list textarea {
+    overflow: hidden;
+    width: 200px; 
+}
+.checkbox-list span {
+    display: none;
+}
+
+.goal-status-boxes {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.goal-status-box {
+    width: 30%;
+    background-color: var(--gold);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+
+}
+
+.status-label {
+    margin-top: 10px;
+    font-size: 24px;
+    font-style: bold;
+}
+.status-value{
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.tip-box {
+    background-color: #f0f0f0;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px; 
+    width: calc(25% - 40px); 
+    position: fixed; 
+    bottom: 20px;
+    right: 20px;
+}
+.tip-box h3 {
+    margin-top: 0;
+    font-size: 20px;
+}
+
+.tip-box p {
+    font-size: 16px;
+    line-height: 1.5;
+}

@@ -1,0 +1,175 @@
+@import "/template.css";
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+.container {
+    display: flex;
+    height: 100%;
+}
+.navbar {
+    flex: 0 0 16%; 
+    background-color: var(--peach);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 25px; 
+}
+.rest-section {
+    flex: 1;
+    background-color: #FDF0D5;
+    position: relative; 
+}
+.logo {
+    color: var(--royalblue);
+    font-size: 30px;
+    cursor: pointer;
+    margin-bottom: 20px; 
+    font-weight: bold;
+}
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+}
+.button {
+    color: white;
+    background-color: transparent;
+    border: 2px solid transparent;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: left; 
+    transition: all 0.3s ease;
+    position: relative;
+    border-radius: 20px; 
+    display: flex;
+    align-items: center;
+}
+.button:hover {
+    background-color: white;
+    color: var(--royalblue);
+}
+.button .icon {
+    margin-right: 10px; 
+}
+.active-button::after {
+    content: '';
+    position: absolute;
+    width: calc(100% + 20px); 
+    height: calc(100% + 20px); 
+    border: 2px solid white;
+    border-radius: 20px; 
+    top: -10px; 
+    left: -10px;
+    z-index: -1;
+}
+
+/* Styles for username dropdown */
+.dropdown {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--royalblue);
+    width: 125px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {
+    color: var(--tan);
+    background-color: var(--peach);
+    transition: all 0.3s ease;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown .dropbtn {
+    font-size: 20px;  
+    border: none;
+    cursor: pointer;
+    background-color: inherit;
+    color: var(--royalblue);
+}
+
+.rest-section {
+    overflow: auto; 
+}
+
+.header {
+    text-align: center;
+    margin-top: 75px; 
+
+}
+
+.header h1 {
+    font-size: 48px;
+    color: var(--royalblue);
+    margin-bottom: 20px; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+}
+
+.header p {
+    font-size: 28px;
+    color: var(--gold);
+    font-style: bold;
+    margin-bottom: 20px;
+    animation: fadeIn 1.25s ease-in-out;
+
+
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.feature-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.feature-box {
+    width: 300px;
+    height: 250px;
+    background-color: var(--seagreen);
+    border-radius: 10px;
+    margin: 40px 60px;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    display: inline-block; 
+    flex: 0 0 calc(33.33% - 40px); 
+    font-size: 17px;
+    transition: box-shadow 0.3s ease; 
+}
+.feature-box:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+}
+
+
+.feature-title {
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    margin-bottom: 10px; 
+}

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            BigDawg
+        </title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <style>
+            
+        #title {
+            color: #ffffff;
+            font-family: Geneva, Verdana, sans-serif;;
+            font-size: 50px;
+        }
+        
+.bg-img {
+  /* The image used */
+  background-color: #161032;
+  box-shadow: inset 0 0 0 1000px rgba(0,0,0,.6);
+  min-height: 1000px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  position: relative;
+}
+
+.text-overlay {
+  /* Center the text vertically and horizontally */
+  position: absolute;
+  top: 35%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  text-align: left;
+  
+  /* Additional styling for the text */
+  color: white;
+  font-size: 25px;
+  font-family: Geneva, Verdana, sans-serif;;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+text-align: left;
+    
+}
+
+.image-container {
+            position: absolute;
+            top: 50%;
+            right: 10%; 
+            transform: translateY(-50%);
+            width: 500px; 
+            height: 500px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #04AA6D; 
+            border: 4px solid #fff;
+            box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);
+        }
+
+        .circle-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .big-button-container {
+            position: absolute;
+            top: 45%; 
+            left: 15%;
+            padding: 10px 40px;
+            background-color: #3c1cb4;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .big-button-container:hover {
+            background-color: #161032; 
+        
+            
+        }
+
+        .big-button-text {
+            color: white;
+            font-family: Geneva, Verdana, sans-serif;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .button-container {
+            position: absolute;
+            top: 45%; 
+            left: 26%;
+            padding: 10px 40px;
+            background-color: #3c1cb4;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container:hover {
+            background-color: #161032; 
+        }
+
+        .button-text {
+            color: white;
+            font-family: Geneva, Verdana, sans-serif;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+.container {
+  position: absolute;
+  margin: 40px;
+  width: auto;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #00008B;
+  background: rgba(0,0,0,0);
+  font-family: Geneva, Verdana, sans-serif;;
+}
+
+.navbar a {
+  float: left;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 20px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; 
+  margin: 0; 
+}
+
+.navbar a:hover {
+  background-color: #4820c4;
+}
+
+.button {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+}
+---------
+
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 20px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; 
+  margin: 0; 
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: #4820c4;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #4820c4;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+        .dropbtn {
+          background-color: #00008B;
+          color: white;
+          padding: 16px;
+          font-size: 16px;
+          border: none;
+          font-family: Geneva, Verdana, sans-serif;;
+        }
+        
+        .shade {
+          width: 100%;
+          height: 100%;
+          background: rgba(0,0,0,0.5);
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+
+        
+        .container {
+          position: relative;
+          text-align: center;
+          color: white;
+        }
+        
+        .centered {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: black;
+        }
+        
+        .GFG {
+            color: white;
+            -webkit-text-stroke-width: 2px;
+            -webkit-text-stroke-color: black;
+        }
+
+        .dropdown-content a:hover {background-color: #ddd;}
+        
+        .dropdown:hover .dropdown-content {display: block;}
+        
+        .dropdown:hover .dropbtn {background-color: #4820c4;}
+        
+        body {
+      font-family: Geneva, Verdana, sans-serif;;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+    }
+    
+    .fa:hover {
+      opacity: 0.7;
+      transform: scale(1.2); 
+    }
+            
+            </style>
+    </head>
+    
+    
+    
+    <body style="background-color:#464a4f;">
+        
+        <div class="bg-img">
+            <div class="text-overlay">
+    <h1>Welcome to BigDawg</h1>
+    <p style="font-size:1vw" style=>A Real-Time Mental Health Chatbot</p>
+  </div>
+  <div class="image-container">
+            <img class="circle-image" src="https://www.heartandstroke.ca/-/media/images/getty_1405434330_1920x1080.webp?rev=7206f396f31144e087a68a3f70f6a5b2" alt="Circle Image">
+        </div>
+  <div class="button-container">
+            <div class="button-text">Learn More</div>
+        </div>
+    <div class="big-button-container">
+            <div class="big-button-text"><a href="therapist">Try BigDawg</a></div>
+        </div>
+          <div class="container">
+              
+            <div class="navbar">
+    <a href="index.html"><i class="fas fa-dog"></i> BigDawg</a>
+    
+  <a href="news.html">News</a>
+  <div class="dropdown">
+    <button class="dropbtn">About Us
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="mission.html">Our Mission</a>
+      <a href="safety.html">Safety</a>
+      <a href="team.html">Team</a>
+     
+    </div>
+    
+  </div>
+  <a href="contactUs.html">Contact Us</a>
+  
+  <div class="dropdown">
+    <button class="dropbtn">Links
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="https://www.samhsa.gov/mental-health-awareness-month">SAMHSA</a>
+      <a href="hotline.html">Hotline</a>
+     
+    </div>
+    
+  </div>
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <a href="https://www.instagram.com/" class="fa fa-instagram"></a>
+    <a href="https://www.youtube.com/" class="fa fa-youtube"></a>
+    <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+    
+    <a href="login.html">Log-In</a>
+  <a href="signUp.html">Sign-Up</a>
+</div>
+
+          </div>
+        </div>
+        
+        <br><br><br><br>
+        
+    </body>
+</html>

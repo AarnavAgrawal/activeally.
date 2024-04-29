@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="face-api.min.js"></script>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>D-ID Streaming POC</title>
+    <!-- added google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      #user-input-field {
+          width: 80%; 
+          padding: 8px; 
+          box-sizing: border-box; 
+          margin: 0 auto;
+          display: block; 
+      }
+      body {
+      background-color: #FDF0D5;
+      color: #ffffff;
+      font-family: 'Mulish', sans-serif;
+      }
+      .peerConnectionState-new {
+        color: cornflowerblue;
+      }
+      .peerConnectionState-connecting {
+        color: orange;
+      }
+      .peerConnectionState-connected {
+        color: green;
+      }
+      .peerConnectionState-disconnected,
+      .peerConnectionState-closed,
+      .peerConnectionState-failed {
+        color: red;
+      }
+
+      .iceConnectionState-new {
+        color: cornflowerblue;
+      }
+      .iceConnectionState-checking {
+        color: orange;
+      }
+      .iceConnectionState-connected,
+      .iceConnectionState-completed {
+        color: green;
+      }
+      .peerConnectionState-disconnected,
+      .peerConnectionState-closed,
+      .peerConnectionState-failed {
+        color: red;
+      }
+
+      .iceGatheringState-new {
+        color: cornflowerblue;
+      }
+      .iceGatheringState-gathering {
+        color: orange;
+      }
+      .iceGatheringState-complete {
+        color: black;
+      }
+
+      .signalingState-stable {
+        color: green;
+      }
+      .signalingState-have-local-offer,
+      .signalingState-have-remote-offer,
+      .signalingState-have-local-pranswer,
+      .signalingState-have-remote-pranswer {
+        color: cornflowerblue;
+      }
+      .signalingState-closed {
+        color: red;
+      }
+
+      .streamingState-streaming {
+        color: green;
+      }
+
+      .streamingState-empty {
+        color: grey;
+      }
+
+      /* added css from here */
+
+      body * {
+        font-family: 'Mulish', sans-serif;
+        text-align: center;
+      }
+
+      #content {
+        width: 820px;
+        position: relative;
+        margin: 0 auto;
+      }
+
+      #buttons {
+        clear: both;
+        padding: 0 0 0 0;
+        text-align: center;
+      }
+
+      button {
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+        margin: 0 5px;
+        background-color: #FF7F70;
+        color: #fff;
+      }
+
+      button:hover {
+        background-color: white;
+        color: #0B6CD4;
+        cursor: pointer;
+        transition: all 0.2s ease-out;
+      }
+
+      #status {
+        clear: both;
+        padding: 20px 0 0 0;
+        text-align: left;
+        display: inline-block;
+        zoom: 1;
+        line-height: 140%;
+        font-size: 15px;
+      }
+
+      #status div {
+        padding-bottom: 10px;
+      }
+
+      #video-wrapper {
+        background: url(bg.png);
+        height: 500px;
+        background-position: center;
+      }
+
+      #video-wrapper div {
+        width: 400px;
+        margin: 0 auto;
+        padding: 50px 0 0 0;
+      }
+      video {
+        display: block;
+        border-radius: 100%;
+        background-color: #000;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div style = "position:absolute; left:390px; top:100px">
+      <video id="video" width="400" height="400" autoplay muted></video>
+    </div>
+    <div style = "position:absolute; left:890px; top:100px">
+      <video id="talk-video" width="400" height="400" autoplay></video>
+   </div>
+
+    <div id="content">
+        <div id="video-wrapper">
+        </div>
+        <br>
+        <div id="input-container">
+            <input type="text" id="user-input-field" placeholder="I am your therapist">
+            <hr>
+        </div>
+        <div id="buttons">
+            <button id="microphone-button" type="button">Record</button>
+            <button id="talk-button" type="button">Send</button>
+            <button id="destroy-button" type="button">End</button>
+        </div>
+    </div>
+
+    <script type="module" src="./index.js"></script>
+    <script>
+        let recognition; 
+        if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+            recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            recognition.continuous = true;
+            recognition.onresult = function(event) {
+                const transcript = event.results[event.results.length - 1][0].transcript;
+                document.getElementById('user-input-field').value = transcript;
+
+            };
+
+            document.getElementById('microphone-button').addEventListener('click', function() {
+                document.getElementById('user-input-field').value = ''; // Clear the textbox
+                recognition.start(); 
+            });
+        } else {
+            alert('Speech recognition not supported by this browser.');
+        }
+
+        document.getElementById('talk-button').addEventListener('click', function() {
+            if (recognition) {
+                recognition.stop();
+            }
+        });
+    </script>
+  </body>
+</html>

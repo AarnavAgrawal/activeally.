@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>ActiveAlly</title>
+	<link href="/Fitness Planner/fitness.css" rel="stylesheet" type="text/css" />
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo" onclick="window.location.href='/Home/home.html'">Active<span style = "color: var(--gold)">Ally</span></div>
+            <div class="buttons">
+                <div class="button active-button" onclick="navigateTo('/Fitness Planner/fitness-planner')">
+                    <span class="icon"><i class="fas fa-dumbbell"></i></span>Fitness Planner
+                </div>
+                <div class="button" onclick="navigateTo('/Goal Guru/goal-guru')">
+                    <span class="icon"><i class="fas fa-check-square"></i></span>Goal Guru
+                </div>
+                <div class="button" onclick="navigateTo('/Personal Assistant/personal-assistant')">
+                    <span class="icon"><i class="fas fa-robot"></i></span>Personal Assistant
+                </div>
+                <div class="button" onclick="navigateTo('/Exercise Log/exercise-log')">
+                    <span class="icon"><i class="fas fa-book"></i></span>Exercise Log
+                </div>
+            </div>
+        </div>
+        <div class="rest-section">
+            <div class="fitness-planner-text">Fitness Planner</div>
+
+            <form id="survey-form">
+                <div class="form-row">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob">
+                </div>
+            
+                <div class="form-row">
+                    <div class="height-input">
+                        <label for="height-feet">Height (feet):</label>
+                        <input type="number" id="height-feet" name="height-feet" min="1" step="1">
+            
+                        <label for="height-inches">Height (inches):</label>
+                        <input type="number" id="height-inches" name="height-inches" min="0" max="11" step="1">
+                    </div>
+                </div>
+            
+                <div class="form-row">
+                    <label for="weight">Weight (lbs):</label>
+                    <input type="number" id="weight" name="weight" min="1" step="1">
+                </div>
+            
+                <fieldset>
+                    <legend>Fitness Goals:</legend>
+                    <label><input type="checkbox" name="fitness-goals" value="gain-muscle">Gain Muscle</label>
+                    <label><input type="checkbox" name="fitness-goals" value="strengthen-heart">Strengthen Heart</label>
+                    <label><input type="checkbox" name="fitness-goals" value="improve-cardio">Improve Cardio</label>
+                    <label><input type="checkbox" name="fitness-goals" value="lose-fat">Lose Fat</label>
+                    <label><input type="checkbox" name="fitness-goals" value="get-stronger">Get Stronger</label>
+                    <label><input type="checkbox" name="fitness-goals" value="improve-flexibility">Improve Flexibility</label>
+                </fieldset>
+            
+                <div class="form-row">
+                    <label for="fitness-level">Current Fitness Level:</label>
+                    <select id="fitness-level" name="fitness-level">
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+            
+                <div class="form-row">
+                    <label for="duration">Duration (weeks):</label>
+                    <input type="number" id="duration" name="duration" min="1" step="1">
+                </div>
+            
+                <button type="button" onclick="generateQuestion()">Generate Fitness Plan</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="dropdown" onmouseover="toggleDropdown()" onmouseleave="hideDropdown()">
+        <button class="dropbtn">Username <i class="fas fa-caret-down"></i></button>
+        <div class="dropdown-content" id="dropdown-content">
+            <a href="#">Account</a>
+            <a href="#">Logout</a>
+        </div>
+    </div>
+
+    <script>
+        function navigateTo(page) {
+            window.location.href = page + '.html';
+        }
+
+        function toggleDropdown() {
+            var dropdownContent = document.getElementById("dropdown-content");
+            dropdownContent.style.display = "block";
+        }
+
+        function hideDropdown() {
+            var dropdownContent = document.getElementById("dropdown-content");
+            dropdownContent.style.display = "none";
+        }
+        
+    </script>
+</body>
+</html>

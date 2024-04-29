@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>ActiveAlly</title>
+	<link href="/Fitness Planner/fitnessPlan.css" rel="stylesheet" type="text/css" />
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo" onclick="window.location.href='/Home/home.html'">Active<span style = "color: var(--gold)">Ally</span></div>
+            <div class="buttons">
+                <div class="button active-button" onclick="navigateTo('/Fitness Planner/fitness-planner')">
+                    <span class="icon"><i class="fas fa-dumbbell"></i></span>Fitness Planner
+                </div>
+                <div class="button" onclick="navigateTo('/Goal Guru/goal-guru')">
+                    <span class="icon"><i class="fas fa-check-square"></i></span>Goal Guru
+                </div>
+                <div class="button" onclick="navigateTo('/Personal Assistant/personal-assistant')">
+                    <span class="icon"><i class="fas fa-robot"></i></span>Personal Assistant
+                </div>
+                <div class="button" onclick="navigateTo('/Exercise Log/exercise-log')">
+                    <span class="icon"><i class="fas fa-book"></i></span>Exercise Log
+                </div>
+            </div>
+        </div>
+        <div class="rest-section">
+            <div class = "response">
+                <div id="answer">
+                </div>
+            </div>
+            <script src="fitnessPlan.js"></script>
+        </div>
+    </div>
+
+    <div class="dropdown" onmouseover="toggleDropdown()" onmouseleave="hideDropdown()">
+        <button class="dropbtn">Username <i class="fas fa-caret-down"></i></button>
+        <div class="dropdown-content" id="dropdown-content">
+            <a href="#">Account</a>
+            <a href="#">Logout</a>
+        </div>
+    </div>
+
+    <script>
+        function navigateTo(page) {
+            window.location.href = page + '.html';
+        }
+
+        function toggleDropdown() {
+            var dropdownContent = document.getElementById("dropdown-content");
+            dropdownContent.style.display = "block";
+        }
+
+        function hideDropdown() {
+            var dropdownContent = document.getElementById("dropdown-content");
+            dropdownContent.style.display = "none";
+        }
+        
+    </script>
+</body>
+</html>

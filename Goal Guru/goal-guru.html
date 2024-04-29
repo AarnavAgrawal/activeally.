@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>ActiveAlly</title>
+	<link href="/Goal Guru/goal.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo" onclick="window.location.href='/Home/home.html'">Active<span style = "color: var(--gold)">Ally</span></div>
+            <div class="buttons">
+                <div class="button active-button" onclick="navigateTo('/Fitness Planner/fitness-planner')">
+                    <span class="icon"><i class="fas fa-dumbbell"></i></span>Fitness Planner
+                </div>
+                <div class="button" onclick="navigateTo('/Goal Guru/goal-guru')">
+                    <span class="icon"><i class="fas fa-check-square"></i></span>Goal Guru
+                </div>
+                <div class="button" onclick="navigateTo('/Personal Assistant/personal-assistant')">
+                    <span class="icon"><i class="fas fa-robot"></i></span>Personal Assistant
+                </div>
+                <div class="button" onclick="navigateTo('/Exercise Log/exercise-log')">
+                    <span class="icon"><i class="fas fa-book"></i></span>Exercise Log
+                </div>
+            </div>
+        </div>
+        <div class="rest-section">
+            <div class="goal-guru-text">Goal Guru</div>
+
+            <div class="goal-status-boxes">
+                <div class="goal-status-box total-goals">
+                    <div class="status-label">Total Goals</div>
+                    <div class="status-value" id="totalGoalsPlaceholder">0</div>
+                </div>
+                <div class="goal-status-box completed-goals">
+                    <div class="status-label">Completed Goals</div>
+                    <div class="status-value" id="completedGoalsPlaceholder">0</div>
+                </div>
+                <div class="goal-status-box incomplete-goals">
+                    <div class="status-label">Incomplete Goals</div>
+                    <div class="status-value" id="incompleteGoalsPlaceholder">0</div>
+                </div>
+            </div>
+            
+            <div class="button-new-section" onclick="addCheckbox()">
+                <span class="icon"><i class="fas fa-plus"></i></span>Add New Goal
+            </div>
+
+            <div class="checkbox-list" id="checkboxList"></div>
+            
+            <div class="tip-box">
+                <h3>Tip: Create SMART Goals</h3>
+                <p>SMART goals are Specific, Measurable, Achievable, Relevant, and Time-bound. When setting goals, try to meet these criteria for maximum effectiveness!</p>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="dropdown" onmouseover="toggleDropdown()" onmouseleave="hideDropdown()">
+        <button class="dropbtn">Username <i class="fas fa-caret-down"></i></button>
+        <div class="dropdown-content" id="dropdown-content">
+            <a href="#">Account</a>
+            <a href="#">Logout</a>
+        </div>
+    </div>
+
+    <script>
+        function navigateTo(page) {
+            window.location.href = page + '.html';
+        }
+
+        function toggleDropdown() {
+            var dropdownContent = document.getElementById("dropdown-content");
+            dropdownContent.style.display = "block";
+        }
+
+        function hideDropdown() {
+            var dropdownContent = document.getElementById("dropdown-content");
+            dropdownContent.style.display = "none";
+        }
+
+    function updateGoalStatus() {
+        const checkboxes = document.querySelectorAll('.checkbox-list input[type="checkbox"]');
+        let completedGoals = 0;
+
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                completedGoals++;
+            }
+        });
+
+        const totalGoals = checkboxes.length;
+        const incompleteGoals = totalGoals - completedGoals;
+
+        document.getElementById('totalGoalsPlaceholder').innerText = totalGoals;
+        document.getElementById('completedGoalsPlaceholder').innerText = completedGoals;
+        document.getElementById('incompleteGoalsPlaceholder').innerText = incompleteGoals;
+
+        saveGoalStatus();
+    }
+
+    loadGoalStatus(); 
+    updateGoalStatus(); 
+
+    document.querySelectorAll('.checkbox-list input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', updateGoalStatus);
+    });
+
+    function addCheckbox() {
+        const newCheckbox = document.createElement('input');
+        newCheckbox.type = 'checkbox';
+        newCheckbox.setAttribute('name', 'newItem');
+        newCheckbox.addEventListener('change', updateGoalStatus);
+
+        const newLabel = document.createElement('input');
+        newLabel.type = 'text';
+        newLabel.placeholder = 'Enter new item';
+        newLabel.setAttribute('name', 'newItemLabel');
+
+        const newItemContainer = document.createElement('div');
+
+        newItemContainer.appendChild(newCheckbox);
+        newItemContainer.appendChild(newLabel);
+
+        const checkboxList = document.getElementById('checkboxList');
+        checkboxList.insertBefore(newItemContainer, checkboxList.firstChild);
+
+        checkboxList.insertBefore(document.createElement('br'), checkboxList.firstChild);
+
+        updateGoalStatus();
+        saveGoalStatus();
+    }
+
+    function loadGoalStatus() {
+        const savedGoals = JSON.parse(localStorage.getItem('goals'));
+
+        if (savedGoals) {
+            savedGoals.forEach(goal => {
+                const newCheckbox = document.createElement('input');
+                newCheckbox.type = 'checkbox';
+                newCheckbox.checked = goal.completed;
+                newCheckbox.addEventListener('change', updateGoalStatus);
+
+                const newLabel = document.createElement('input');
+                newLabel.type = 'text';
+                newLabel.value = goal.label;
+                newLabel.setAttribute('name', 'newItemLabel');
+
+                const newItemContainer = document.createElement('div');
+                newItemContainer.appendChild(newCheckbox);
+                newItemContainer.appendChild(newLabel);
+
+                const checkboxList = document.getElementById('checkboxList');
+                checkboxList.insertBefore(newItemContainer, checkboxList.firstChild);
+                checkboxList.insertBefore(document.createElement('br'), checkboxList.firstChild);
+            });
+        }
+    }
+
+    function saveGoalStatus() {
+        const checkboxes = document.querySelectorAll('.checkbox-list input[type="checkbox"]');
+        const goals = [];
+
+        checkboxes.forEach(checkbox => {
+            const label = checkbox.nextSibling.value;
+            const completed = checkbox.checked;
+            goals.push({ label, completed });
+        });
+
+        localStorage.setItem('goals', JSON.stringify(goals));
+    }
+                
+    </script>
+</body>
+</html>

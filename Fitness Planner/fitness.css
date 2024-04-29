@@ -1,0 +1,168 @@
+@import "/template.css";
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+.container {
+    display: flex;
+    height: 100%;
+}
+.navbar {
+    flex: 0 0 16%; 
+    background-color: var(--peach);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 25px; 
+}
+.rest-section {
+    flex: 1;
+    background-color: #FDF0D5;
+    position: relative; 
+}
+.logo {
+    color: var(--royalblue);
+    font-size: 30px;
+    cursor: pointer;
+    margin-bottom: 20px; 
+    font-weight: bold;
+}
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+}
+.button {
+    color: white;
+    background-color: transparent;
+    border: 2px solid transparent;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: left; 
+    transition: all 0.3s ease;
+    position: relative;
+    border-radius: 20px; 
+    display: flex;
+    align-items: center;
+}
+.button:hover {
+    background-color: white;
+    color: var(--royalblue);
+}
+.button .icon {
+    margin-right: 10px; 
+}
+.active-button::after {
+    content: '';
+    position: absolute;
+    width: calc(100% + 20px); 
+    height: calc(100% + 20px); 
+    border: 2px solid white;
+    border-radius: 20px; 
+    top: -10px; 
+    left: -10px;
+    z-index: -1;
+}
+
+.dropdown {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--royalblue);
+    width: 125px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {
+    color: var(--tan);
+    background-color: var(--peach);
+    transition: all 0.3s ease;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown .dropbtn {
+    font-size: 20px;  
+    border: none;
+    cursor: pointer;
+    background-color: inherit;
+    color: var(--royalblue);
+}
+
+.rest-section {
+    overflow: auto; 
+}
+
+.fitness-planner-text {
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 30px; 
+    margin-top: 30px; 
+    color: var(--royalblue);
+}
+
+/* CSS for the form */
+.rest-section form {
+    font-size: 20px;
+    background-color: var(--seagreen);
+    padding: 20px;
+    margin: 75px auto;
+    width: 1200px; 
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.rest-section form .form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 45px;
+    width: 100%;
+}
+
+.rest-section form .form-row label {
+    width: 25%; 
+    font-size: 20px;
+}
+
+.rest-section form .form-row input,
+.rest-section form .form-row select {
+    width: 70%;
+    font-size: 20px;
+}
+
+.rest-section form fieldset {
+    margin-bottom: 25px;
+    font-size: 20px;
+    border-color: var(--royalblue);
+}
+
+.rest-section form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--peach);
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.rest-section form button:hover {
+    background-color: #FF6347;
+}

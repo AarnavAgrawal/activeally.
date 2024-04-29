@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>ActiveAlly</title>
+	<link href="/Exercise Log/exercise.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="container">
+        <!-- navigation bar on the right-->
+        <div class="navbar">
+            <div class="logo" onclick="window.location.href='/Home/home.html'">Active<span style = "color: var(--gold)">Ally</span></div>
+            <div class="buttons">
+                <div class="button active-button" onclick="navigateTo('/Fitness Planner/fitness-planner')">
+                    <span class="icon"><i class="fas fa-dumbbell"></i></span>Fitness Planner
+                </div>
+                <div class="button" onclick="navigateTo('/Goal Guru/goal-guru')">
+                    <span class="icon"><i class="fas fa-check-square"></i></span>Goal Guru
+                </div>
+                <div class="button" onclick="navigateTo('/Personal Assistant/personal-assistant')">
+                    <span class="icon"><i class="fas fa-robot"></i></span>Personal Assistant
+                </div>
+                <div class="button" onclick="navigateTo('/Exercise Log/exercise-log')">
+                    <span class="icon"><i class="fas fa-book"></i></span>Exercise Log
+                </div>
+            </div>
+        </div>
+        <div class="rest-section">
+            <div class="exercise-log-text">Exercise Log</div>
+
+            <div class="button-new-section" onclick="openJournalPopup()">
+                <span class="icon"><i class="fas fa-plus"></i></span>Create New Journal
+            </div>
+
+            <div id="journalModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeJournalPopup()">&times;</span>
+                    <h2>Create New Journal</h2>
+                    <form id="journalForm">
+                        <label for="journalName">Journal Name:</label>
+                        <input type="text" id="journalName" name="journalName"><br><br>
+                        <label for="journalDate">Date:</label>
+                        <input type="date" id="journalDate" name="journalDate"><br><br>
+                        <label for="journalEntry">Journal Entry:</label><br>
+                        <textarea id="journalEntry" name="journalEntry" placeholder="Write your thoughts..."></textarea><br><br>
+                        <div class="button-submit" onclick="saveToFile()">
+                            <span class="icon"><i class="fas fa-pencil-alt"></i></span>Add Journal Entry
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div id="journalEntries" class="journal-entries"></div>
+            
+        </div>
+    </div>
+
+    <!-- Username dropdown -->
+    <div class="dropdown" onmouseover="toggleDropdown()" onmouseleave="hideDropdown()">
+        <button class="dropbtn">Username <i class="fas fa-caret-down"></i></button>
+        <div class="dropdown-content" id="dropdown-content">
+            <a href="#">Account</a>
+            <a href="#">Logout</a>
+        </div>
+    </div>
+    
+    <script>
+        function navigateTo(page) {
+            // Redirect to the appropriate page based on the button clicked
+            window.location.href = page + '.html';
+        }
+
+        function toggleDropdown() {
+            var dropdownContent = document.getElementById("dropdown-content");
+            dropdownContent.style.display = "block";
+        }
+
+        function hideDropdown() {
+            var dropdownContent = document.getElementById("dropdown-content");
+            dropdownContent.style.display = "none";
+        }
+
+        function openJournalPopup() {
+            var modal = document.getElementById("journalModal");
+            modal.style.display = "block";
+            
+            const journalName = document.getElementById('journalName');
+            const journalDate = document.getElementById('journalDate');
+            const journalContent = document.getElementById('journalEntry');
+            const addButton = document.querySelector('.button-submit');
+            const modalTitle = document.querySelector('.modal-content h2');
+
+        
+            
+            journalName.value = '';
+            journalDate.value = '';
+            journalContent.value = '';
+
+            journalName.disabled = false;
+            journalDate.disabled = false;
+            journalContent.disabled = false;
+        
+            modalTitle.textContent = 'Create New Journal';
+            addButton.style.display = 'block';
+
+
+        }
+        
+        function closeJournalPopup() {
+            var modal = document.getElementById("journalModal");
+            modal.style.display = "none";
+        }
+
+        function saveToFile() {
+            const journalName = document.getElementById('journalName');
+            const journalDate = document.getElementById('journalDate');
+            const journalContent = document.getElementById('journalEntry');
+        
+            // Retrieve the values from the text fields
+            const nameValue = journalName.value;
+            const dateValue = journalDate.value;
+            const contentValue = journalContent.value;
+        
+            // Create a JSON object with the new journal entry data
+            const newEntry = {
+                name: nameValue,
+                date: dateValue,
+                content: contentValue
+            };
+        
+            // Retrieve existing data from localStorage
+            let existingEntries = localStorage.getItem('journalEntries');
+        
+            // Parse existing data as JSON or initialize as an empty array
+            existingEntries = existingEntries ? JSON.parse(existingEntries) : [];
+        
+            existingEntries.push(newEntry);
+        
+            // Store the combined data back into localStorage
+            localStorage.setItem('journalEntries', JSON.stringify(existingEntries));
+        
+            displayJournalEntries();
+            // Close the popup modal
+            closeJournalPopup();
+        }
+        
+        // Function to display journal entries
+        function displayJournalEntries() {
+            const journalEntriesDiv = document.getElementById('journalEntries');
+            journalEntriesDiv.innerHTML = ''; // Clear previous entries
+        
+            let existingEntries = localStorage.getItem('journalEntries');
+            existingEntries = existingEntries ? JSON.parse(existingEntries) : [];
+                
+            existingEntries.forEach((entry, index) => {
+                const entryDiv = document.createElement('div');
+                entryDiv.classList.add('journal-entry');
+        
+                const iconImg = document.createElement('img');
+                iconImg.src = 'notebook.png';
+                entryDiv.appendChild(iconImg);
+        
+                const entryDetailsDiv = document.createElement('div');
+                entryDetailsDiv.innerHTML = `<strong>${entry.name}</strong><br>${entry.date}`;
+                entryDiv.appendChild(entryDetailsDiv);
+        
+                entryDiv.addEventListener('click', () => showJournalContent(entry));
+        
+                journalEntriesDiv.appendChild(entryDiv);
+            });
+        }
+        
+        
+        function showJournalContent(entry) {
+            const modal = document.getElementById('journalModal');
+            modal.style.display = 'block';
+            
+            const journalName = document.getElementById('journalName');
+            const journalDate = document.getElementById('journalDate');
+            const journalContent = document.getElementById('journalEntry');
+            const addEntryButton = document.querySelector('.button-submit');
+            const modalTitle = document.querySelector('.modal-content h2');
+
+        
+            
+            journalName.value = entry.name;
+            journalDate.value = entry.date;
+            journalContent.value = entry.content;
+
+            journalName.disabled = true;
+            journalDate.disabled = true;
+            journalContent.disabled = true;
+        
+            addEntryButton.style.display = 'none';
+            modalTitle.textContent = 'Journal Contents';
+
+
+        }
+        
+
+        displayJournalEntries();
+
+
+    </script>
+</body>
+</html>
+

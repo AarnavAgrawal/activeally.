@@ -1,0 +1,271 @@
+@import "/template.css";
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+.container {
+    display: flex;
+    height: 100%;
+}
+.navbar {
+    flex: 0 0 16%; 
+    background-color: var(--peach);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 25px; 
+}
+.rest-section {
+    flex: 1;
+    background-color: #FDF0D5;
+    position: relative; 
+}
+.logo {
+    color: var(--royalblue);
+    font-size: 30px;
+    cursor: pointer;
+    margin-bottom: 20px; 
+    font-weight: bold;
+}
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+}
+.button {
+    color: white;
+    background-color: transparent;
+    border: 2px solid transparent;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: left; 
+    transition: all 0.3s ease;
+    position: relative;
+    border-radius: 20px; 
+    display: flex;
+    align-items: center;
+}
+.button:hover {
+    background-color: white;
+    color: var(--royalblue);
+}
+.button .icon {
+    margin-right: 10px; 
+}
+.active-button::after {
+    content: '';
+    position: absolute;
+    width: calc(100% + 20px); 
+    height: calc(100% + 20px); 
+    border: 2px solid white;
+    border-radius: 20px; 
+    top: -10px; 
+    left: -10px;
+    z-index: -1;
+}
+
+/* Styles for username dropdown */
+.dropdown {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--royalblue);
+    width: 125px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {
+    color: var(--tan);
+    background-color: var(--peach);
+    transition: all 0.3s ease;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown .dropbtn {
+    font-size: 20px;  
+    border: none;
+    cursor: pointer;
+    background-color: inherit;
+    color: var(--royalblue);
+}
+
+.rest-section {
+    overflow: auto; /* Enable vertical scrolling */
+}
+
+.exercise-log-text {
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 30px; 
+    margin-top: 30px; 
+    color: var(--royalblue);
+}
+
+
+.button-new-section {
+    color: white;
+    background-color: var(--gold);
+    border: 2px solid var(--gold);
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: left; 
+    transition: all 0.3s ease;
+    position: absolute;
+    border-radius: 20px; 
+    display: flex;
+    align-items: center;
+    margin: 25px 30px;
+}
+.button-new-section:hover {
+    background-color: var(--royalblue);
+    color: white;
+    border: 2px solid var(--royalblue);
+}
+.button-new-section .icon {
+    margin-right: 10px; 
+}
+.active-button-new-section::after {
+    content: '';
+    position: absolute;
+    width: calc(100% + 20px); 
+    height: calc(100% + 20px); 
+    border: 2px solid white;
+    border-radius: 20px; 
+    top: -10px; 
+    left: -10px;
+    z-index: -1;
+}
+
+
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 0px;
+}
+
+.modal-content {
+    background-color: var(--seagreen);
+    margin: 5% auto; 
+    padding: 30px;
+    border: 1px solid #888;
+    width: 60%; 
+    height: 80%;
+}
+.modal-content h2 {
+    font-size: 30px; 
+    margin-bottom: 20px; 
+}
+.modal-content form label {
+    margin-bottom: 20px; 
+    font-size: 24px;
+}
+.modal-content form input {
+    margin-bottom: 20px; 
+    font-size: 24px;
+}
+.modal-content form button {
+    margin-bottom: 20px; 
+    font-size: 24px;
+}
+.modal-content form textarea {
+    margin-bottom: 20px; 
+    margin-top: 20px;
+    font-size: 20px;
+    resize: none;
+    width: 100%;
+    height: 300px;
+}
+
+.close {
+    color: black;
+    float: right;
+    font-size: 45px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button-submit {
+    color: white;
+    background-color: var(--gold);
+    border: 2px solid var(--gold);
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: left; 
+    transition: all 0.3s ease;
+    position: absolute;
+    border-radius: 20px; 
+    display: flex;
+    align-items: center;
+}
+.button-submit:hover {
+    background-color: var(--royalblue);
+    color: white;
+    border: 2px solid var(--royalblue);
+}
+.button-submit .icon {
+    margin-right: 10px; 
+}
+
+.journal-entries {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1vw));
+    gap: 30px;
+}
+.journal-entry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 200px; 
+    height: 250px; 
+    border-radius: 5px;
+    margin: 10px 10px;
+    padding: 10px;
+    position: relative;
+    background-color: var(--royalblue); 
+    top: 100px;
+    left: 25px;
+    cursor: pointer;
+    color: white;
+
+}
+
+.journal-entry img {
+    width: 100px; 
+    height: 100px; 
+    margin-bottom: 10px; 
+}
+
+.entry-details {
+    font-size: 16px; 
+}
+
